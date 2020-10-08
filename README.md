@@ -1,2 +1,4 @@
 # 4-in-a-row
-4-in-a-row game (currently only 2 players)
+(currently only 2 players available)
+
+saves all times blue and red won
