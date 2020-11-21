@@ -9,22 +9,15 @@ let mod;
 
 init();
 
+//manages the turns
 function insertPin(num) {
   if (counter == 49) {
     endGame("tie");
   } else if (mod == 2 && columnsSpace[num] > 0) {  //two players
-    document.getElementById("r" + columnsSpace[num] + num).classList.add(turns[currentP]);
-    isWin(columnsSpace[num], num);
-    counter++;
-    columnsSpace[num]--;
-    currentP = (currentP + 1) % 2;
+    pinInserter(num);
   }
   else if (mod == 1 && columnsSpace[num] > 0) {  //one player             
-    document.getElementById("r" + columnsSpace[num] + num).classList.add(turns[currentP]);
-    isWin(columnsSpace[num], num);
-    counter++;
-    columnsSpace[num]--;
-    currentP = (currentP + 1) % 2;
+    pinInserter(num);
     computerTurn(0);
   }
 }
@@ -33,20 +26,23 @@ function insertPin(num) {
 function computerTurn(level) {
   let rand = 1;
   rand = Math.floor((Math.random() * 7) + 1);
-  setTimeout(() => {
-  console.log(rand);
-  while (containsC(1, rand) != 2) {
-      rand = (int)((Math.random() * 6) + 1);
-      console.log(rand);
+  while (columnsSpace[rand] <= 0) {
+      rand = (int)((Math.random() * 7) + 1);
   }
-
-    document.getElementById("r" + columnsSpace[rand] + rand).classList.add(turns[currentP]);
-    isWin(columnsSpace[rand], rand);
-    counter++;
-    columnsSpace[rand]--;
-    currentP = (currentP + 1) % 2;
+  setTimeout(() => {
+    pinInserter(rand);
     }, 200);
 }
+
+//makes the actual turn
+function pinInserter (num) {
+  document.getElementById("r" + columnsSpace[num] + num).classList.add(turns[currentP]);
+    isWin(columnsSpace[num], num);
+    counter++;
+    columnsSpace[num]--;
+    currentP = (currentP + 1) % 2;
+}
+
 
 //checks if current turn won
 //using: checkH, checkV, checkOTL and checkOTR
