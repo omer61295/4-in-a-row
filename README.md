@@ -1,5 +1,6 @@
 # 4-in-a-row
-(currently only 2 players available)
+option for one or two players
+(for now computer plays randomly)
 
 saves all times blue and red won
 
